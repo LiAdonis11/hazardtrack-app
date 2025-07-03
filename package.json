@@ -9,10 +9,26 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/metro-runtime": "~5.0.4",
+    "@tamagui/babel-plugin": "^1.129.13",
+    "@tamagui/config": "^1.129.13",
+    "@tamagui/lucide-icons": "^1.129.14",
     "expo": "~53.0.16",
+    "expo-router": "~5.1.2",
     "expo-status-bar": "~2.2.3",
+    "lucide-react-native": "^0.525.0",
     "react": "19.0.0",
-    "react-native": "0.79.5"
+    "react-dom": "19.0.0",
+    "react-native": "0.79.5",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-screens": "~4.11.1",
+    "react-native-svg": "^15.12.0",
+    "react-native-web": "^0.20.0",
+    "tamagui": "^1.129.13",
+    "expo-image-picker": "~16.1.4",
+    "expo-location": "~18.1.6"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
