@@ -94,6 +94,9 @@ export default function LoginScreen() {
           <Button mt="$2" variant='outlined' onPress={() => router.push('/my-reports')}>
             View Submitted Reports
           </Button>
+          <Button mt="$2" variant='outlined' onPress={() => router.push('/practicepage')}>
+           practice page
+          </Button>
         </YStack>
 
         {/* Footer */}

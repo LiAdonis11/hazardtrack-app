@@ -1,9 +1,12 @@
-import { Stack } from 'expo-router'
+import { Stack, router, useRouter } from 'expo-router'
 import { useState, useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Alert     } from 'react-native'
 import { Button, Input, Text, YStack, TextArea, Label, Image, Select } from 'tamagui' 
 import * as Location from 'expo-location'
 import * as ImagePicker from 'expo-image-picker'
+import { addReport } from '../lib/data'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 
 
@@ -39,12 +42,35 @@ export default function ReportFormScreen() {
         }
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (!image || !description || !location || !category) {
-            alert("All fields are required!")
+            Alert.alert('Missing Data', 'Please fill out all fields.')
             return
         }
-        alert("Report Submitted successfully!")
+
+        const newReport = {
+            id: Date.now(),
+            image,
+            description,
+            location,
+            category,
+            date: new Date().toISOString().split('T')[0],
+            status: 'Pending'
+        }
+
+        try {
+            const existingReports =  await AsyncStorage.getItem('hazardReports')
+            const parsedReports = existingReports ? JSON.parse(existingReports) : []
+
+            parsedReports.push(newReport)
+            await AsyncStorage.setItem('hazardReports', JSON.stringify(parsedReports))
+
+            Alert.alert('success', 'Report submitted!')
+            router.push('/my-reports')
+        } catch (err) {
+            console.error(err)
+            Alert.alert('Error', 'Failed to save the report.')
+        }
     }
 
     return (
